@@ -3,10 +3,16 @@ from chatterbot.conversation import Statement
 from chatterbot.trainers import ChatterBotCorpusTrainer
 from tkinter import *
 import pyttsx3 
+import requests
 import speech_recognition as sr
 from PIL import ImageTk, Image
 import pyaudio
+import os
 import threading
+import phonenumbers
+from number import no
+from phonenumbers import geocoder
+from phonenumbers import carrier
 
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty('voices')
@@ -16,6 +22,8 @@ engine.setProperty('rate', 170)
 def speak(word): 
     engine.say(word)
     engine.runAndWait()
+
+
 
 chatbot = ChatBot('Chatbot')
 trainer= ChatterBotCorpusTrainer(chatbot)
@@ -33,6 +41,7 @@ photoL.pack(pady=5)
 def takecommand():
     r= sr.Recognizer()
     r.pause_threshold=1
+    r.energy_threshold = 250
     print("your bot is listening try to speak")
     with sr.Microphone() as m:
         try:
@@ -55,6 +64,9 @@ def ask_from_bot():
    speak(answer_from_bot)
    textF.delete(0, END)
    msgs.yview(END)
+
+        
+
 
 frame = Frame(main)
 sc = Scrollbar(frame)
@@ -79,9 +91,20 @@ main.bind('<Return>', enter_func)
 
 def repeatL():
     while True:
-        takecommand()
+       takecommand()
+
+     
 
 t= threading.Thread(target= repeatL)
-t.start
+t.start()
+
+if __name__ == "__main__":
+    while True:
+        query = takecommand()
+        if "hello" in query:
+            takecommand()
+        elif "track phone number" in query:
+            from phoneno import track_pno
+            track_pno()
 
 main.mainloop()
