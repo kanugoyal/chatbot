@@ -1,1 +1,11 @@
 venv/
+app.py
+bot.jpg
+brian-eno-lets-imagine-the-future.wav
+config.ini 
+db.sqlite3
+main.py
+number.py
+phoneno.py
+w.py
+weather.py
