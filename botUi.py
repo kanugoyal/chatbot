@@ -1,7 +1,11 @@
 # import files
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session, flash
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
+import speech_recognition as sr
+import requests
+import configparser
+
 
 app = Flask(__name__)
 
@@ -21,5 +25,9 @@ def get_bot_response():
     return str(chatbot.get_response(userText))
 
 
+
+   
+       
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, threaded = True)

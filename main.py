@@ -5,7 +5,9 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 
 chatbot = ChatBot('Chatbot')
 trainer= ChatterBotCorpusTrainer(chatbot)
+
 trainer.train("chatterbot.corpus.english")
+
 #print(chatbot.get_response("what is computer"))
 print("hi,I am chatbot")
 while True:
